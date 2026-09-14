@@ -1,24 +1,3 @@
 import { awards } from '../data.js'
-
-export default function Awards() {
-  return (
-    <section id="awards">
-      <div className="container">
-        <div className="section-head">
-          <h2>Awards & Recognition</h2>
-        </div>
-
-        <div className="award-grid">
-          {awards.map((a) => (
-            <div className="award-card" key={a.title}>
-              <h3 className="award-title">{a.title}</h3>
-              <p className="award-org">{a.org}</p>
-              <p className="award-period">{a.period}</p>
-              <p className="award-detail">{a.detail}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
+export default function Awards(){return <section id="awards" className="section"><SectionHead icon="♛" title="Awards & Recognition" text="Achievements that reflect my journey, academically and professionally."/><div className="awards-grid">{awards.map(a=><article className={'award-card '+a.type} key={a.title}><div className="award-symbol"><img src={a.type==='rank'?'/logos/srm.svg':'/logos/saksoft.svg'} alt={a.type==='rank'?'SRM logo':'Saksoft logo'}/></div><div className="award-copy"><span className="award-kicker">{a.badge}</span><h3>{a.title}</h3><strong>{a.org}</strong><small>{a.period}</small><p>{a.detail}</p>{a.certificate&&<a href={a.certificate} target="_blank" rel="noreferrer" className="award-button">View Certificate ↗</a>}</div>{a.certificate&&<img className="certificate-thumb" src={a.certificate} alt="Saksoft Openness Award certificate"/>}{a.type==='rank'&&<div className="rank-mark"><b>3</b><span>RANK</span></div>}</article>)}</div></section>}
+function SectionHead({icon,title,text}){return <div className="section-head"><div className="section-icon">{icon}</div><div><h2>{title}</h2><p>{text}</p></div></div>}

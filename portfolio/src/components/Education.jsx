@@ -1,26 +1,3 @@
 import { education } from '../data.js'
-
-export default function Education() {
-  return (
-    <section id="education">
-      <div className="container">
-        <div className="section-head">
-          <h2>Education</h2>
-        </div>
-
-        <div className="edu-list">
-          {education.map((e) => (
-            <div className="edu-item" key={e.school + e.degree}>
-              <span className="edu-period">{e.period}</span>
-              <div>
-                <h3 className="edu-school">{e.school}</h3>
-                <p className="edu-degree">{e.degree}</p>
-                {e.detail && <p className="edu-detail">{e.detail}</p>}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
+export default function Education(){return <section id="education" className="section"><SectionHead icon="⌂" title="Education" text="Building a strong foundation for a bigger tomorrow."/><div className="education-grid">{education.map(e=><article className="education-card" key={e.degree}><img className="edu-logo" src={e.logo||'/logos/srm.svg'} alt=""/><div><span>{e.period}</span><h3>{e.degree}</h3><strong>{e.school}</strong><p>{e.detail}</p>{e.distinction&&<em className="edu-badge">{e.distinction}</em>}</div></article>)}</div></section>}
+function SectionHead({icon,title,text}){return <div className="section-head"><div className="section-icon">{icon}</div><div><h2>{title}</h2><p>{text}</p></div></div>}

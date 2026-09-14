@@ -1,26 +1,3 @@
 import { skills } from '../data.js'
-
-export default function Skills() {
-  return (
-    <section id="skills">
-      <div className="container">
-        <div className="section-head">
-          <h2>Skills</h2>
-        </div>
-
-        <div className="skills-grid">
-          {skills.map((group) => (
-            <div className="skill-group" key={group.group}>
-              <p className="group-title">{group.group}</p>
-              <div className="skill-chips">
-                {group.items.map((item) => (
-                  <span className="skill-chip" key={item}>{item}</span>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
+export default function Skills(){return <section id="skills" className="section skills"><SectionHead icon="⌘" title="Skills & Technologies" text="The tools and technologies I use across AI development, data engineering and analytics."/><div className="skills-grid">{skills.map(s=><article className="skill-card" key={s.title}><div className="skill-logos">{s.logos.map((logo,i)=><span className="tech-logo" key={logo+i}><img src={logo} alt=""/></span>)}</div><div><h3>{s.title}</h3><p>{s.items}</p></div></article>)}</div></section>}
+function SectionHead({icon,title,text}){return <div className="section-head"><div className="section-icon">{icon}</div><div><h2>{title}</h2><p>{text}</p></div></div>}

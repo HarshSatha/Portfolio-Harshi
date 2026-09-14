@@ -1,72 +1,28 @@
 import { profile } from '../data.js'
-import photo from '../assets/harsshita.jpg'
+import portrait from '../assets/harsshita.jpg'
+
+const techBadges = [
+  ['Copilot Studio', 'AI Agents', '/logos/copilot.svg', 'label-copilot'],
+  ['Agentic AI', 'Automation', '/logos/copilot.svg', 'label-ai'],
+  ['Data Engineering', 'SQL · ETL · BI', '/logos/sql.svg', 'label-data'],
+]
 
 export default function Hero() {
-  return (
-    <header className="hero" id="top">
-      <div className="container-wide hero-grid">
-        <div>
-          <div className="hero-eyebrow reveal" style={{ animationDelay: '0.05s' }}>
-            Available for new opportunities
-          </div>
-
-          <h1 className="reveal" style={{ animationDelay: '0.12s' }}>
-            {profile.name}
-            <br />
-            <span className="gradient">{profile.role}</span>
-          </h1>
-
-          <p className="hero-summary reveal" style={{ animationDelay: '0.2s' }}>
-            {profile.summary}
-          </p>
-
-          <div className="hero-actions reveal" style={{ animationDelay: '0.28s' }}>
-            <a
-              className="btn btn-primary"
-              href="#projects"
-              onClick={(e) => {
-                e.preventDefault()
-                document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })
-              }}
-            >
-              View my work
-            </a>
-            <a
-              className="btn btn-ghost"
-              href="#contact"
-              onClick={(e) => {
-                e.preventDefault()
-                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
-              }}
-            >
-              Contact me
-            </a>
-          </div>
-
-          <div className="hero-meta reveal" style={{ animationDelay: '0.36s' }}>
-            <div className="hero-meta-item">
-              <span className="label">Based in</span>
-              <span className="value">{profile.location}</span>
-            </div>
-            <div className="hero-meta-item">
-              <span className="label">Currently</span>
-              <span className="value">Junior Data Engineer, Saksoft</span>
-            </div>
-            <div className="hero-meta-item">
-              <span className="label">Focus</span>
-              <span className="value">Agentic AI · Data Engineering</span>
-            </div>
-          </div>
-        </div>
-
-        <div className="hero-photo-wrap reveal" style={{ animationDelay: '0.15s' }}>
-          <div className="hero-photo-frame">
-            <img src={photo} alt={`Portrait of ${profile.name}`} />
-            <span className="corner-tick tl" aria-hidden="true" />
-            <span className="corner-tick br" aria-hidden="true" />
-          </div>
-        </div>
-      </div>
-    </header>
-  )
+  return <section id="home" className="hero section-grid-bg">
+    <div className="hero-copy">
+      <span className="hello-pill">✦ Hello, I&apos;m</span>
+      <h1><span>Harsshita</span><em>Sathasivam</em></h1>
+      <h2>{profile.role}</h2>
+      <div className="hero-tags">{profile.subtitle.split(' · ').map((x, i) => <span key={x}>{i > 0 && <b>·</b>}{x}</span>)}</div>
+      <p className="hero-lead">{profile.summary}</p>
+      <div className="hero-actions"><a className="btn primary" href="#projects">Explore My Work <span>→</span></a><a className="btn ghost" href="#contact">Let&apos;s Connect <span>↗</span></a></div>
+      <div className="socials"><a href={profile.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn"><img className="social-logo" src="/logos/linkedin.svg" alt="LinkedIn"/></a><a href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub"><img className="social-logo" src="/logos/github.svg" alt="GitHub"/></a></div>
+    </div>
+    <div className="hero-visual">
+      <div className="orbit orbit-one"/><div className="orbit orbit-two"/><div className="hero-glow"/>
+      <div className="portrait-ring"><img src={portrait} alt="Harsshita Sathasivam"/></div>
+      {techBadges.map(([title, sub, logo, cls]) => <div className={'float-label '+cls} key={title}><span className="logo-box"><img src={logo} alt=""/></span><div><strong>{title}</strong><small>{sub}</small></div></div>)}
+      <span className="scribble">Dream<br/>Build<br/>Grow ♡</span>
+    </div>
+  </section>
 }

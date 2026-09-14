@@ -1,29 +1,3 @@
 import { experience } from '../data.js'
-
-export default function Experience() {
-  return (
-    <section id="experience">
-      <div className="container">
-        <div className="section-head">
-          <h2>Experience</h2>
-        </div>
-
-        <div className="timeline">
-          {experience.map((job, i) => (
-            <div className={`timeline-item${i === 0 ? ' current' : ''}`} key={job.role + job.period}>
-              <span className="timeline-node" aria-hidden="true" />
-              <span className="timeline-period">{job.period}</span>
-              <h3 className="timeline-role">{job.role}</h3>
-              <p className="timeline-org">{job.org}</p>
-              <ul className="timeline-points">
-                {job.points.map((point) => (
-                  <li key={point}>{point}</li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
+export default function Experience(){return <section id="experience" className="section"><SectionHead icon="◆" title="Experience" text="My professional journey, turning skills into real-world impact."/><div className="experience-grid">{experience.map((job)=><article className="experience-card" key={job.role+job.period}><div className="exp-top"><img className="company-logo-img" src={job.logo} alt={`${job.org} logo`}/><div><h3>{job.org}</h3><small>{job.period}</small></div><span className="company-type">{job.role}</span></div><ul>{job.points.map(p=><li key={p}>{p}</li>)}</ul>{job.role==='Trainee Engineer'&&<strong className="conversion">Trainee → Full-time · Mar 2026</strong>}</article>)}</div></section>}
+function SectionHead({icon,title,text}){return <div className="section-head"><div className="section-icon">{icon}</div><div><h2>{title}</h2><p>{text}</p></div></div>}

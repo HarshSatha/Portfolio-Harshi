@@ -1,31 +1,3 @@
-import { projects } from '../data.js'
-
-export default function Projects() {
-  return (
-    <section id="projects">
-      <div className="container-wide">
-        <div className="section-head">
-          <h2>Projects</h2>
-        </div>
-
-        <div className="project-grid">
-          {projects.map((p) => (
-            <article className="project-card" key={p.title}>
-              <div className="top-row">
-                <h3>{p.title}</h3>
-                {p.period && <span className="project-period">{p.period}</span>}
-              </div>
-              <p className="project-role">{p.role}</p>
-              <p className="project-desc">{p.description}</p>
-              <div className="tag-row">
-                {p.tags.map((t) => (
-                  <span className="tag" key={t}>{t}</span>
-                ))}
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
+import { featuredProjects, projects } from '../data.js'
+export default function Projects(){return <section id="projects" className="section"><SectionHead icon="◈" title="Featured Projects" text="A few projects that show how I turn ideas into working products."/><div className="projects-grid">{featuredProjects.map((p,i)=><article className={'project-card project-'+i} key={p.title}><div className="project-art"><span>{p.icon}</span><div className="mock-lines"><i/><i/><i/></div></div><div className="project-content"><div className="project-title"><h3>{p.title}</h3><span>{p.period}</span></div><p>{p.description}</p><div className="tag-row">{p.tags.map(t=><span key={t}>{t}</span>)}</div></div></article>)}</div><div className="more-projects"><div className="more-title">More work</div><div className="more-grid">{projects.map(p=><article key={p.title}><span>{p.role}</span><h3>{p.title}</h3><p>{p.description}</p></article>)}</div></div></section>}
+function SectionHead({icon,title,text}){return <div className="section-head"><div className="section-icon">{icon}</div><div><h2>{title}</h2><p>{text}</p></div></div>}
